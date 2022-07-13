@@ -20,4 +20,20 @@ if hooking.tobool(os.environ.get('gpupassthrough')):
   kvm.appendChild(hidden)
   features.appendChild(kvm)
 
+
+#  features = domxml.getElementsByTagName('features')[0]
+  vmport = domxml.createElement('vmport')
+  vmport.setAttribute('state', 'off')
+  features.appendChild(vmport)
+
+#  features = domxml.getElementsByTagName('features')[0]
+  ioapic = domxml.createElement('ioapic')
+  ioapic.setAttribute('driver', 'kvm')
+  features.appendChild(ioapic)
+
+  hostdev = domxml.getElementsByTagName('hostdev')[0]
+  vbios = domxml.createElement('rom')
+  vbios.setAttribute('file', 'xxxxx')
+  hostdev.appendChild(vbios)
+
   hooking.write_domxml(domxml)
